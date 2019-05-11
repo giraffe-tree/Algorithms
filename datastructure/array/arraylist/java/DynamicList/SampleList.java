@@ -4,7 +4,7 @@ package me.giraffetree.java.algorithms.week01.day01;
  * @author GiraffeTree
  * @date 2019-05-11
  */
-public interface SampleList<T> {
+public interface SampleList<T> extends Iterable<T>{
 
     int size();
 
@@ -17,6 +17,4 @@ public interface SampleList<T> {
     T get(int index);
 
     T set(int index, T t);
-
-
 }

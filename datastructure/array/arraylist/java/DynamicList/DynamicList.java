@@ -1,5 +1,7 @@
 package me.giraffetree.java.algorithms.week01.day01;
 
+import java.util.Iterator;
+
 /**
  * dynamicList for java 8 without iterator
  *
@@ -128,6 +130,24 @@ public class DynamicList<T> implements SampleList<T> {
         T origin = content[index];
         content[index] = t;
         return origin;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private int index;
+            @Override
+            public boolean hasNext() {
+                return index < endFlag;
+            }
+            @Override
+            public T next() {
+                if (index < endFlag) {
+                    return content[index++];
+                }
+                throw new ArrayIndexOutOfBoundsException(index);
+            }
+        };
     }
 
 
