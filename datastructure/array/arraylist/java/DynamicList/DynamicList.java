@@ -3,12 +3,12 @@ package me.giraffetree.java.algorithms.week01.day01;
 import java.util.Iterator;
 
 /**
- * dynamicList for java 8 without iterator
+ * dynamicList for java 8
  *
  * @author GiraffeTree
  * @date 2019-05-11
  */
-public class DynamicList<T> implements SampleList<T> {
+public class DynamicList<T> implements SimpleList<T> {
 
     private final static int DEFAULT_MAX_SIZE = 16;
     private T[] content;

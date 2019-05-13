@@ -1,10 +1,10 @@
-package me.giraffetree.java.algorithms.week01.day01;
+package me.giraffetree.java.algorithms.week01.day02;
 
 /**
  * @author GiraffeTree
  * @date 2019-05-11
  */
-public interface SampleList<T> extends Iterable<T>{
+public interface SimpleList<T> extends Iterable<T>{
 
     int size();
 
