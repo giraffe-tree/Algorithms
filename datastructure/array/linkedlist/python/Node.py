@@ -14,6 +14,7 @@ class Node(object):
     """
     __slots__ = 'element', 'next'
 
-    def __init__(self, element, next):
+    def __init__(self, element, next, prev=None):
         self.element = element
         self.next = next
+        self.prev = prev
