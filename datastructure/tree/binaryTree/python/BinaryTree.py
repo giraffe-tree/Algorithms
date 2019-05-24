@@ -52,3 +52,33 @@ class BinaryTree(Tree):
             yield self.left(p)
         if self.right(p):
             yield self.right(p)
+
+    def _subtree_inorder(self, p):
+        """"
+        生成以节点p为根节点的子树的中序遍历
+        :param p: 节点
+        :return: 生成器
+        """
+        if self.left(p):
+            # self._subtree_inorder(self.left(p))
+            for other in self._subtree_inorder(self.left(p)):
+                yield other
+        yield p
+        if self.right(p):
+            # self._subtree_inorder(self.right(p))
+            for other in self._subtree_inorder(self.right(p)):
+                yield other
+
+    def inorder(self):
+        """
+        生成以根节点的子树的中序迭代
+        :return: 生成器
+        """
+        if not self.is_empty():
+            for p in self._subtree_inorder(self.root()):
+                yield p
+
+    def positions(self):
+        # 可以调用其它遍历方法
+        # return self.postorder()
+        return self.inorder()

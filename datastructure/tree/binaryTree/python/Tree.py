@@ -49,7 +49,7 @@ class Tree(object):
         """
         raise NotImplementedError("must be implemented by subclass")
 
-    def num_chiledren(self, p):
+    def num_children(self, p):
         """
         返回节点p的子节点数目
         :param p: 节点p
@@ -71,6 +71,71 @@ class Tree(object):
         :return: 节点数目
         """
         raise NotImplementedError("must be implemented by subclass")
+
+    def __iter__(self):
+        """
+        生成树元素的迭代
+        :return: 树元素
+        """
+        for p in self.positions():
+            yield p.element()
+
+    def _subtree_preorder(self, p):
+        """
+        生成以p为根节点的子树的先序迭代
+        :param p: 节点
+        :return: 生成器
+        """
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def preorder(self):
+        """
+        生成以根节点的子树的先序迭代
+        :return: 生成器
+        """
+        if not self.is_empty():
+            for p in self._subtree_preorder(self.root()):
+                yield p
+
+    def _subtree_postorder(self, p):
+        """
+        生成以节点p为根节点的子树的后序遍历
+        :param p: 节点
+        :return: 生成器
+        """
+        for c in self.children(p):
+            for other in self._subtree_postorder(c):
+                yield other
+        yield p
+
+    def postorder(self):
+        """
+        生成以根节点的子树的先序迭代
+        :return: 生成器
+        """
+        if not self.is_empty():
+            for p in self._subtree_postorder(self.root()):
+                yield p
+
+    def breadthfirst(self):
+        """
+        生成树的广度遍历迭代
+        :return: 生成器
+        """
+        if not self.is_empty():
+            fringe = list()
+            fringe.append(self.root())
+            while fringe:
+                p = fringe.pop(0)
+                yield p
+                for c in self.children(p):
+                    fringe.append(c)
+
+    def positions(self):
+        return self.preorder()
 
     def is_root(self, p):
         """

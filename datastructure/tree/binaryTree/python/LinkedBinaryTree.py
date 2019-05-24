@@ -81,9 +81,9 @@ class LinkedBinaryTree(BinaryTree):
         """
         node = self._validate(p)
         count = 0
-        if self.left(node):
+        if node.left:
             count += 1
-        if self.right(node):
+        if node.right:
             count += 1
         return count
 
@@ -133,7 +133,7 @@ class LinkedBinaryTree(BinaryTree):
         if node.left is not None:
             raise ValueError("Left child exists")
         self._size += 1
-        node.left = self._Node(e)
+        node.left = self._Node(e, node)
         return self._make_position(node.left)
 
     def _add_right(self, p, e):
@@ -147,8 +147,26 @@ class LinkedBinaryTree(BinaryTree):
         if node.right is not None:
             raise ValueError("right child exists")
         self._size += 1
-        node.right = self._Node(e)
+        node.right = self._Node(e, node)
         return self._make_position(node.right)
+
+    def add(self, flag, e, p=None):
+        """
+        公开的添加函数
+        :param flag: 0代表root节点，1代表左节点，2代表右节点
+        :param e: 节点元素
+        :param p: 指定节点
+        :return: 新节点位置实例
+        """
+        if flag == 0:
+            # 调用_add_root方法
+            return self._add_root(e)
+        elif flag == 1:
+            # 调用_add_left方法
+            return self._add_left(p, e)
+        elif flag == 2:
+            # 调用_add_right方法
+            return self._add_right(p, e)
 
     def _replace(self, p, e):
         """
@@ -162,6 +180,9 @@ class LinkedBinaryTree(BinaryTree):
         node.element = e
         return old
 
+    def replace(self, p, e):
+        return self._replace(p, e)
+
     def _delete(self, p):
         """
         删除位置实例p处的节点
@@ -173,7 +194,7 @@ class LinkedBinaryTree(BinaryTree):
             raise ValueError("p has two children")
         child = node.left if node.left is not None else node.right
         if child is not None:
-            child._parent = node.parent
+            child.parent = node.parent
         if node is self._root:
             self._root = child
         else:
@@ -185,6 +206,9 @@ class LinkedBinaryTree(BinaryTree):
         self._size -= 1
         node.parent = node
         return node.element
+
+    def delete(self, p):
+        return self._delete(p)
 
     def _attach(self, p, t1, t2):
         """
@@ -210,5 +234,8 @@ class LinkedBinaryTree(BinaryTree):
             node.right = t2._root
             t2._root = None
             t2._size = 0
+
+    def attach(self, p, t1, t2):
+        self._attach(p, t1, t2)
 
 
