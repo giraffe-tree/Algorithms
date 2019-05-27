@@ -3,7 +3,23 @@
 ## 参考
 
 1. **Algorithms fourth edition** **3.3.2节 红黑二叉查找树**
-2. [教你透彻了解红黑树](https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md) 一般思路, 可以参考, 但图有点错误, 没有讲清来龙去脉
+
+## 导读
+
+曾经, 我看到的红黑树, 上来就是
+
+```
+红黑树的性质
+1）每个结点要么是红的，要么是黑的。  
+2）根结点是黑的。  
+3）每个叶结点（叶结点即指树尾端NIL指针或NULL结点）是黑的。  
+4）如果一个结点是红的，那么它的俩个儿子都是黑的。  
+5）对于任一结点而言，其到叶结点树尾端NIL指针的每一条路径都包含相同数目的黑结点。  
+```
+
+我看完之后, 我心里 `12#!^@^&$!*())#7&(&*%$58%%*%*&%%()*%?<)` , 哇, 完全看天书哎
+
+然后这几天看了 `Robert Sedgewick` 的`Algorithms` ...... 挖槽, 原来是这样的
 
 ## 红黑树
 
@@ -26,6 +42,14 @@
 
 ![画图不易请注明出处 giraffetree.me](https://open-chen.oss-cn-hangzhou.aliyuncs.com/open/img/2019/May/redblacktreeTo23tree.png?x-oss-process=style/default)
 
+## todo
+
+画图....
+
+1. 升序插入
+2. 随机插入
+
+
 ### 其他知识点
 
 #### 插入时最主要的3个操作
@@ -43,9 +67,3 @@
 2. 若 N 的左节点 S 为 红色, 且 S 的左节点也为红色, 则进行 **右旋**
 3. 若 N 的左右节点均为 红色, 则进行颜色转换
 
-## todo
-
-画图....
-
-1. 升序插入
-2. 随机插入
