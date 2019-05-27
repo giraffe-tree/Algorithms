@@ -3,7 +3,7 @@
 ### 小结
 
 1. [2-3树小结](./2-3tree.md)
-2. [红黑树小结](./2-3tree.md)
+2. [红黑树小结](./RedBlackTree.md)
 
 ### TreePrinter
 
