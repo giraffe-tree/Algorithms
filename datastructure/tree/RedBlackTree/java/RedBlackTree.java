@@ -62,20 +62,6 @@ public class RedBlackTree<KEY extends Comparable<KEY>, VALUE> {
         return h;
     }
 
-    public class Node<KEY, VALUE> {
-        KEY key;
-        VALUE value;
-        Node<KEY, VALUE> left, right;
-        int size;
-        boolean color;
-
-        public Node(KEY key, VALUE value, int size, boolean color) {
-            this.key = key;
-            this.value = value;
-            this.size = size;
-            this.color = color;
-        }
-    }
 
     private boolean isRed(Node x) {
         return x != null && x.color == RED;
@@ -114,6 +100,13 @@ public class RedBlackTree<KEY extends Comparable<KEY>, VALUE> {
             return 0;
         }
         return x.size;
+    }
+
+    /**
+     * only for test
+     */
+    Node<KEY, VALUE> getRoot() {
+        return root;
     }
 
 
