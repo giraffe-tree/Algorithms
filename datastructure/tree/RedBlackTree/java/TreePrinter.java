@@ -3,6 +3,7 @@ package me.giraffetree.java.algorithms.week02.day07;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * 改写自 https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram
@@ -14,8 +15,11 @@ public class TreePrinter<T, V> {
 
     public static void main(String[] args) {
         RedBlackTree<Integer, String> tree = new RedBlackTree<>();
-        for (int i = 0; i < 30; i++) {
-            tree.put(i, "num" + i);
+
+        int size = 20;
+        for (int i = 0; i < size; i++) {
+            int x = ThreadLocalRandom.current().nextInt(size);
+            tree.put(x, "num" + x);
         }
 
         printNode(tree.getRoot());
